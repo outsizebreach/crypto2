@@ -1,0 +1,12 @@
+C:\Users\HP\source\repos\myproject2\myproject2\obj\Debug\myproject2.csproj.AssemblyReference.cache
+C:\Users\HP\source\repos\myproject2\myproject2\obj\Debug\myproject2.Form1.resources
+C:\Users\HP\source\repos\myproject2\myproject2\obj\Debug\myproject2.Form2.resources
+C:\Users\HP\source\repos\myproject2\myproject2\obj\Debug\myproject2.csproj.GenerateResource.cache
+C:\Users\HP\source\repos\myproject2\myproject2\obj\Debug\myproject2.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\myproject2\myproject2\obj\Debug\myproject2.csproj.AssemblyReference.cache
+C:\Users\HP\Desktop\myproject2\myproject2\obj\Debug\myproject2.Form1.resources
+C:\Users\HP\Desktop\myproject2\myproject2\obj\Debug\myproject2.Form2.resources
+C:\Users\HP\Desktop\myproject2\myproject2\obj\Debug\myproject2.Form3.resources
+C:\Users\HP\Desktop\myproject2\myproject2\obj\Debug\myproject2.showForm.resources
+C:\Users\HP\Desktop\myproject2\myproject2\obj\Debug\myproject2.csproj.GenerateResource.cache
+C:\Users\HP\Desktop\myproject2\myproject2\obj\Debug\myproject2.csproj.CoreCompileInputs.cache

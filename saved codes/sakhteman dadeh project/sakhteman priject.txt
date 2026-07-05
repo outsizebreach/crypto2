@@ -1,0 +1,117 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
+using System.Linq;
+using System.Net;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace sakhteman_hi_dade
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Country Iran = new Country();
+            if (Iran.Name == null) { Console.WriteLine("is null"); }
+            Console.ReadKey();
+        }
+        class Country
+        {
+            public string Name;
+            public City Capital;
+            public Node neibors;
+            List<Country> neibors_list = new List<Country>();
+            public void Add_Neibor1(Country country)
+            {
+                if (neibors.data == null) neibors.data = country; return;
+                Node p = new Node();
+                p.data= country;
+                p.next = neibors;
+            } //O(1)
+            public void Add_Neibor2(Country country)
+            {
+                neibors_list.Add(country);
+            }
+            public Country() { }
+        }
+        class Node
+        {
+            public object data;
+            public Node next;
+        }
+
+        class City
+        {
+            public string name;
+            public GPS location;
+            public Commodity commodity;
+            public Node stores;
+            public void Add_Store(string store)
+            {
+                Node p = new Node();
+                p = stores;
+                while (p.next != null)
+                {
+                    p = p.next;
+                }
+                Node c = new Node();
+                p.next = c;
+                c.data = store;
+
+            }
+        }
+        class GPS
+        {
+            public int row, col;
+            public Country on;
+
+        }
+        class Commodity
+        {
+            public string name;
+            public int code;
+            public Node countries;
+            public void Add_Country(Country country)
+            {
+                Node p = new Node();
+                p = countries;
+                while (p.next != null)
+                {
+                    p = p.next;
+                }
+                Node c = new Node();
+                p.next = c;
+                c.data = country;
+
+            }
+        }
+        class All_Cities
+        {
+          public static List <City> bcities=new List <City> ();   
+        }
+        class Tree
+        {
+            public Commodity commodity;
+            public Tree left, right;
+            public Tree() { }
+            void Add_Commodity (Commodity commodity2)
+            {
+            Tree tree = new Tree();
+            tree.commodity = commodity2;
+            if (commodity.code == commodity2.code) Console.WriteLine("added previusly");{ return;
+            if (commodity.code > commodity2.code) left.Add_Commodity(commodity2);return;
+            if (commodity.code < commodity2.code) right.Add_Commodity(commodity2); return;
+
+            }//O(logn)
+            Commodity Find_Commodity_with_code(int code)
+            {
+               if (commodity.code == code) return commodity;
+               if (commodity.code > code) left.Find_Commodity_with_code(code);
+               if (commodity.code < code) right.Find_Commodity_with_code(code);
+            }//O(logn)
+        }
+    }
+    
+}

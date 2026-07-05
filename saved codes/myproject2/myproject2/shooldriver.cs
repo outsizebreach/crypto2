@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace projectsc
+{
+    internal class SchoolDriver : Driver
+    {
+        DateTime Sabegheh { get; set; }
+        //List<bool> Way {  get; set; }
+        bool oneway;
+
+        public SchoolDriver(string Name, string LastName, string PhoneNumber, string Adress, DateTime Date, int DriverCode,
+            int MelliCod, Education Education, int Percent, DateTime Sabegheh, bool oneway) : base(Name, LastName, PhoneNumber, Adress, Date, DriverCode, MelliCod, Education, Percent)
+        {
+            this.Sabegheh = Sabegheh;
+            this.oneway = oneway;
+        }
+
+        /* public override double CalculateSalary<T>(List<T> daramad)
+         {
+             double salary = 0;
+             int i = 0;
+             foreach (T t in daramad)
+             {
+                 if (Way[i])
+                 {
+                     double d = Convert.ToDouble(t);
+                     salary += d;
+                 }
+                 i++;
+             }
+             return salary * base.GivePercent() / 100;
+         }*/
+
+        public override double CalculateSalary<T>(List<T> daramad)
+        {
+            if (oneway) return 2 * base.CalculateSalary(daramad);
+            return base.CalculateSalary(daramad);
+        }
+
+
+
+    }
+}

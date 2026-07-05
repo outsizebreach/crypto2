@@ -1,0 +1,68 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace projectsc
+{
+    internal class Car
+    {
+        DateTime ProductYear { get; set; }
+        Company Company { get; set; }
+        string Model { get; set; }
+        int CatDriverCode { get; set; }
+        Color Color { get; set; }
+        DateTime Engheza { get; set; }
+        int InsuranceNum { get; set; }
+        int[] Engh = new int[1000];
+        public Car(DateTime productYear, Company company, string model, int catDriverCode, Color color, DateTime engheza, int insuranceNum)
+        {
+            this.ProductYear = productYear;
+            this.Company = company;
+            this.Model = model;
+            this.CatDriverCode = catDriverCode;
+            this.Color = color;
+            this.Engheza = engheza;
+            this.InsuranceNum = insuranceNum;
+        }
+        public Car()
+        {
+            this.ProductYear = ProductYear;
+            this.Company = Company;
+            this.Model = Model;
+            this.CatDriverCode = CatDriverCode;
+            this.Color = Color;
+            this.Engheza = Engheza;
+            this.InsuranceNum = InsuranceNum;
+
+        }
+
+        public bool IsSame(Car C1, Car C2)
+        {
+            if (C1.Model == C2.Model) return true;
+            return false;
+        }
+
+
+        public int this[DateTime index]
+        {
+            get
+            {
+              
+                return index.Year;
+
+            }
+            set
+            {
+                int sum = value;
+
+            }
+
+
+        }
+
+
+    }
+}

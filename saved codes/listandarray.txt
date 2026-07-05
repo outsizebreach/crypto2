@@ -1,0 +1,60 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.ExceptionServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace listandarray
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+        }
+
+    }
+
+    class Array
+    {
+        public object[] index = new object[3];
+        public Array() { }
+    } //index[0] = index[1] = index[2] = null;
+    class Node
+    {
+        //public object[] A = new object[3];
+        public Array array;
+        public Node next;
+        public Node() { array.index[0] = array.index[1] = array.index[2]=next= null; }
+    }
+    class ListAndArray
+    {
+       public Node first;
+       
+       public void Incert(object x)
+        {
+            Node p = first;
+            while (true)
+            {
+                if(p.next == null)
+                {
+                    if (p.array.index[0] == null) p.array.index[0] = x; break;
+                    if (p.array.index[1] == null) p.array.index[1] = x; break;
+                    if (p.array.index[2] == null) p.array.index[2] = x; break;
+                    Node q;
+                    p.next = q;
+                    //Incert(x); break;
+                    q.array.index[0] = x; break;
+                }
+                p = p.next; 
+            }
+        }
+        Node First() {  return first; }    
+
+        
+
+    }
+
+ 
+
+}

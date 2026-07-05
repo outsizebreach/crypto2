@@ -1,0 +1,146 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.ExceptionServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace listandarray
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+        }
+
+    }
+
+    class Array
+    {
+        public object[] index = new object[3];
+        public Array() { }
+    } //index[0] = index[1] = index[2] = null;
+    class Node
+    {
+        //public object[] A = new object[3];
+        public Array array;
+        public Node next;
+        public Node() { array.index[0] = array.index[1] = array.index[2]=next= null; }
+    }
+    class ListAndArray
+    {
+        public Node first;
+
+        public void Incert(object x)
+        {
+            Node p = first;
+            while (true)
+            {
+                if (p.next == null)
+                {
+                    if (p.array.index[0] == null) p.array.index[0] = x; break;
+                    if (p.array.index[1] == null) p.array.index[1] = x; break;
+                    if (p.array.index[2] == null) p.array.index[2] = x; break;
+                    Node q;
+                    p.next = q;
+                    //Incert(x); break;
+                    q.array.index[0] = x; break;
+                }
+                p = p.next;
+            }
+        }//θ(n)
+        public void Incert2(object x)
+        {
+            Node p = first;
+            while (p.next != null) p= p.next;
+            if (p.array.index[0] == null) p.array.index[0] = x; return;
+            if (p.array.index[1] == null) p.array.index[1] = x; return;
+            if (p.array.index[2] == null) p.array.index[2] = x; return;
+            Node q;
+            p.next = q;
+            //Incert(x); break;
+            q.array.index[0] = x; return;
+        }//θ(n) 
+
+        public object DeleteLast()
+        {
+            if (first.array.index[0] == null) { return false; }
+            Node p = first;
+            object x;
+            while(p.next != null)  p= p.next;
+            if (p.array.index[2] != null) { x = p.array.index[2]; return x; }
+            if (p.array.index[1] != null) { x = p.array.index[1]; return x; }
+            if (p.array.index[0] != null) { x = p.array.index[0]; return x; }
+            return false;
+        }//θ(n)
+
+        public bool Search(object x)
+        {
+            Node p = first;
+            //int node = 1;
+            //int index = 0;
+            while (true)
+            {
+                if (p.array.index[0]== x) return true;
+                if (p.array.index[1] == x) return true;
+                if (p.array.index[2] == x) return true;
+                p = p.next;
+                if (p == null) return false;
+            }
+            return false;
+        }
+        
+        public bool DeleteX(object x)
+        {
+            Node p = first;
+            int i=0;
+            while (p.array.index[i] != x)
+            {
+                if(p==null) return false;
+                i++;
+                if (i == 3) i = 0; p = p.next;
+            }
+            Node q;
+            for(int j=i; p.next!=null; q = p ,p = p.next)
+            {
+                if(j==0) p.array.index[0] = p.array.index[1]; j++;
+                if(j==1) p.array.index[1] = p.array.index[2]; j++;
+                if(j==2) p.array.index[2] = p.next.array.index[0];
+                j = 0;
+            }
+            if (p.array.index[1]==null) q.next = null;
+            if (p.array.index[2] == null) p.array.index[0] = p.array.index[1]; p.array.index[1] = null;
+            return true;
+
+        }//θ(n)
+
+        public void DeleteEveryX(object x)
+        {
+            bool check=true;
+
+            while (check == true)
+            {
+                check = DeleteX(x);
+            }
+
+        }//θ(n)
+
+        Node First() {  return first; }    
+
+        
+
+    }
+
+ 
+
+}
+
+/* 
+ در پیچیدگی زمانی n تعداد ند ها است. از مزایای این ساختمان داده میتوان سرعت بالا در عین پیچیدگی و ذخیره هر سه داده به تفکیک ند ها اشاره کرد. مانند ذخیره عبارت زیر که دارای چندین متغیر است
+3x2 +2x -5y +11z2
+همینطور در این ساختمان داده هنگامی که به یک داده دسترسی داریم همزمان به داده های اطرافش هم دسترسی داریم برای مثال اگر به یک عنصر در یک ند دسترسی داشته باشیم ،همزمان به دو عنصر دیگر از همان ند نیز دسترسی داریم
+از آنجایی که طول آرایه در هر ند کوتاه است، مشکل خاصی برای ذخیره داده ها نداریم
+ 
+ 
+ */

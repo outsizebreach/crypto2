@@ -1,0 +1,2 @@
+import os
+os.system("ssh -N -D 5060 erfan@serv1.angrymal.shop")

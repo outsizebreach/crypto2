@@ -1,0 +1,165 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+
+namespace sakhtemanhidade2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Country Japan = new Country("Japan");
+            
+            City Tokyo = new City("Tokyou");
+            Japan.capital= Tokyo;
+
+            Country Iran = new Country("Iran");
+            City Tehran = new City("Tehran");
+            Iran.capital = Tehran;
+            Iran.neibor1 = Japan;
+            Japan.neibor1 = Iran;
+
+            Program program = new Program();
+
+            object obj = program.Find("Tokyou", Iran);
+            if(obj is Country country) Console.WriteLine(country.name);
+            if (obj is City city) Console.WriteLine(city.name);
+            if (obj is Commodity commodity) Console.WriteLine(commodity.name);
+
+
+            Console.ReadKey();
+
+        }
+
+
+        public object Find(string name,object node)
+        {
+        object obj;
+        if (node is Country country && country.is_checked == false)
+            {
+               country.is_checked = true;
+
+               if(country.name == name) /*country.is_checked = true;*/ return country;
+
+               obj=Find(name,country.capital);
+               if(obj != null) /*country.is_checked = false;*/ return obj;
+
+               obj=Find(name,country.neibor1);
+               if (obj != null) /*country.is_checked = false;*/ return obj;
+
+               obj=Find(name,country.neibor2);
+               if (obj != null) /*country.is_checked = false;*/ return obj;
+
+                //country.is_checked = false;
+                return null;
+                   
+            }
+
+        if(node is City city && city.is_checked == false)
+            {
+                city.is_checked = true;
+
+                if(city.name==name) /*city.is_checked = false;*/ return city;
+
+                obj=Find(name,city.location);
+                if (obj != null)/* city.is_checked = false;*/ return obj;
+
+                obj=Find(name,city.commodity);
+                if (obj != null)/* city.is_checked = false;*/ return obj;
+
+                //city.is_checked = false;
+                return null;
+            }
+
+
+            if (node is Location location && location.is_checked == false)
+            {
+                location.is_checked = true;
+
+
+                obj = Find(name, location.country);
+                if (obj != null) /*location.is_checked = false;*/ return obj;
+                
+                //location.is_checked = false;
+                return null;
+
+            }
+
+            if (node is Commodity commodity && commodity.is_checked == false)
+            {
+                commodity.is_checked = true;
+
+
+                obj = Find(name, commodity.country1);
+                if (obj != null) /*commodity.is_checked = false;*/ return obj;
+
+                obj = Find(name, commodity.country2);
+                if (obj != null) /*commodity.is_checked = false;*/ return obj;
+
+                //commodity.is_checked = false;
+                return null;
+
+            }
+            return null;
+
+        }//O(n)
+
+
+
+
+    }
+
+    class Country
+    {
+        public string name;
+        public City capital;
+        public Country neibor1;
+        public Country neibor2;
+        public Country(string name) { this.name = name; }
+        public bool is_checked = false;
+    }
+
+     class City
+    {
+        public string name;
+        public Location location;
+        public Commodity commodity;
+        public City(string name) { this.name = name; }
+        public bool is_checked = false;
+
+    }
+
+    class Location
+    {
+        public int x, y;
+        public Country country;
+        public Location() { }
+        public bool is_checked = false;
+
+    }
+
+    class Commodity
+    {
+        public string name;
+        public int code;
+
+        public Country country1;
+        public Country country2;
+        public Commodity() { }
+        public bool is_checked = false;
+
+    }
+
+    class Graf
+    {
+       public Country Iran = new Country("Tehran") ;
+        
+       
+    }
+
+
+
+}
